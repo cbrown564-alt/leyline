@@ -17,6 +17,6 @@ Agreed 11 October 2026. Leyline is a software studio, and nothing else.
 5. **Contact.** Short form plus email.
 
 Also:
-- **Project sizes:** three example sizes (small, medium, large), each with a typical length and price range. Placeholders until agreed.
+- **Project sizes:** Small from £2k (2–4 weeks), Medium from £5k (1–2 months), Large from £20k (3 months or more). Prices agreed 11 October; lengths are placeholders to confirm with Killian.
 - **Terms:** a small visual summary of only what is genuinely true of how we work. To be agreed with Killian.
 - **Privacy:** separate page, plumbing.

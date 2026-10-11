@@ -295,22 +295,6 @@
     scroll-behavior: smooth;
   }
 
-  /* Anchor jumps land below the sticky header (~100px tall) with breathing room */
-  section[id],
-  footer[id],
-  [id='services'] {
-    scroll-margin-top: 116px;
-  }
-
-  /* Below 1120px the header becomes a taller two-row layout, so anchors need more room */
-  @media (max-width: 1119px) {
-    section[id],
-    footer[id],
-    [id='services'] {
-      scroll-margin-top: 150px;
-    }
-  }
-
   a {
     text-decoration: none;
   }

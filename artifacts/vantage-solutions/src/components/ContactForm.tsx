@@ -6,10 +6,10 @@ const BURGUNDY = '#8B1A2C';
 
 const labelStyle: CSSProperties = {
   display: 'block',
-  fontSize: 10,
-  letterSpacing: '0.2em',
+  font: "500 12px/1.4 'IBM Plex Mono', monospace",
+  letterSpacing: '0.04em',
   textTransform: 'uppercase',
-  color: 'rgba(245,243,236,0.5)',
+  color: 'rgba(245,243,236,0.6)',
   marginBottom: 8,
 };
 
@@ -18,8 +18,8 @@ const inputStyle: CSSProperties = {
   background: 'transparent',
   border: '1px solid rgba(245,243,236,0.25)',
   color: CREAM,
-  padding: '12px 14px',
-  fontSize: 14,
+  padding: '14px 16px',
+  fontSize: 16,
   fontFamily: 'inherit',
   outline: 'none',
   boxSizing: 'border-box',
@@ -154,7 +154,7 @@ export default function ContactForm({ selectedServices = [], onRemoveService, on
       <button
         type="submit"
         disabled={status === 'sending'}
-        style={{ width: isMobile ? '100%' : undefined, fontSize: 11, letterSpacing: '0.15em', textTransform: 'uppercase', color: CREAM, background: 'transparent', border: '1px solid rgba(245,243,236,0.4)', padding: '14px 28px', cursor: status === 'sending' ? 'wait' : 'pointer', opacity: status === 'sending' ? 0.6 : 1 }}
+        style={{ width: isMobile ? '100%' : undefined, font: "700 17px/1 'Schibsted Grotesk', sans-serif", color: '#1A1918', background: CREAM, border: 'none', padding: '16px 24px', cursor: status === 'sending' ? 'wait' : 'pointer', opacity: status === 'sending' ? 0.6 : 1 }}
       >
         {status === 'sending' ? 'Sending…' : 'Send message'}
       </button>

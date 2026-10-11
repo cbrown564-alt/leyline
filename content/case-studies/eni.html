@@ -52,30 +52,16 @@
   .fig p { margin-top:10px; font-size:15px; line-height:1.4; color:var(--stone); max-width:20ch; }
 
   /* ── Before / after ── */
-  .compare-head { display:flex; justify-content:space-between; align-items:end; gap:24px; margin:112px 0 20px; }
+  .compare-head { margin:112px 0 28px; }
   h2 { font:800 clamp(32px,3.6vw,48px)/1.02 var(--display); letter-spacing:-.035em; }
   h2 em { font-style:normal; color:var(--burgundy); }
-  .hint { color:var(--stone); font-size:15px; }
-
-  .compare { position:relative; aspect-ratio:1440/660; overflow:hidden; border:1px solid var(--rule); background:#fff; touch-action:pan-y; }
-  .compare img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; user-select:none; -webkit-user-drag:none; }
-  .compare .before { clip-path:inset(0 calc(100% - var(--x)) 0 0); }
-  .divider { position:absolute; top:0; bottom:0; left:var(--x); width:0; pointer-events:none; }
-  .divider::before { content:''; position:absolute; top:0; bottom:0; left:-1px; width:2px; background:var(--burgundy); }
-  .knob { position:absolute; top:50%; left:0; transform:translate(-50%,-50%); width:44px; height:44px; border-radius:50%; background:var(--burgundy); box-shadow:0 0 0 6px rgba(245,243,236,.85); display:grid; place-items:center; }
-  .knob svg { width:22px; height:22px; stroke:var(--paper); }
-  .tag { position:absolute; top:16px; font:500 12px/1 var(--mono); letter-spacing:.04em; text-transform:uppercase; padding:7px 9px; background:var(--ink); color:var(--paper); }
-  .tag.b { left:16px; } .tag.a { right:16px; background:var(--burgundy); }
-  .compare input { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:ew-resize; margin:0; }
-  .compare:has(input:focus-visible) .knob { outline:3px solid var(--ink); outline-offset:6px; }
-
-  /* Numbered nodes on the new design: what changed, where. */
-  .pin { position:absolute; transform:translate(-50%,-50%); width:28px; height:28px; border-radius:50%; background:var(--ink); color:var(--paper); font:500 13px/28px var(--mono); text-align:center; box-shadow:0 0 0 4px rgba(255,255,255,.9); opacity:0; transition:opacity .3s var(--ease); pointer-events:none; }
-  .compare.revealed .pin { opacity:1; }
-  .compare.revealed .pin.covered { opacity:0; }
-  .keys { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:18px; }
-  .keys li { list-style:none; display:flex; gap:12px; font-size:15px; line-height:1.4; color:var(--stone); }
-  .keys b { flex:none; width:24px; height:24px; border-radius:50%; background:var(--ink); color:var(--paper); font:500 12px/24px var(--mono); text-align:center; }
+  .pair { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  .pair figure { margin:0; }
+  .pair img { display:block; width:100%; height:auto; border:1px solid var(--rule); }
+  .pair figcaption { margin-top:12px; display:flex; justify-content:space-between; }
+  .pair figcaption b { font-weight:500; color:var(--ink); }
+  .pair .now figcaption b { color:var(--burgundy); }
+  .explain { margin-top:40px; font-size:20px; line-height:1.55; max-width:58ch; }
 
   /* ── What changed: each problem paired with its fix ── */
   .changes { margin-top:112px; display:grid; grid-template-columns:1fr 1fr; gap:64px; }
@@ -103,7 +89,7 @@
   .row.shown .ley b { transform:scaleX(1); }
 
   @media (prefers-reduced-motion: reduce) {
-    .in, .row .ley b, .pin { transition:none; opacity:1; transform:none; }
+    .in, .row .ley b { transition:none; opacity:1; transform:none; }
   }
   @media (max-width:860px) {
     .wrap { padding:0 16px; }
@@ -111,11 +97,9 @@
     .figures { grid-template-columns:1fr 1fr; }
     .fig:nth-child(3) { padding-left:0; border-left:0; }
     .fig:nth-child(n+3) { border-top:1px solid var(--rule); }
-    .compare-head { flex-direction:column; align-items:start; margin-top:72px; }
-    .keys { grid-template-columns:1fr; gap:10px; }
-    .pin { width:20px; height:20px; font-size:11px; line-height:20px; box-shadow:0 0 0 3px rgba(255,255,255,.9); }
-    .knob { width:32px; height:32px; box-shadow:0 0 0 4px rgba(245,243,236,.85); }
-    .tag { top:8px; font-size:10px; padding:5px 6px; } .tag.b { left:8px; } .tag.a { right:8px; }
+    .compare-head { margin-top:72px; }
+    .pair { grid-template-columns:1fr; gap:28px; }
+    .explain { font-size:18px; }
     .changes { grid-template-columns:1fr; gap:48px; margin-top:72px; }
     .row { grid-template-columns:1fr; gap:6px; }
     .row .ley { width:48px; }
@@ -144,26 +128,19 @@
     <div class="fig focus in" style="--d:240ms"><div class="n">2<small>min</small></div><p>to change a client logo, without a developer</p></div>
   </section>
 
-  <div class="compare-head">
-    <h2>Same company. <em>Clearer first look.</em></h2>
-    <p class="hint">Drag to compare August with October.</p>
-  </div>
+  <h2 class="compare-head">Same company. <em>Clearer first look.</em></h2>
 
-  <figure class="compare" id="compare" style="--x:50%">
-    <img src="eni/after-home.jpg" alt="ENI homepage in October: 'Worth a closer look', specialist insight recruiters since 1989, with buttons for finding a role and finding a hire">
-    <img class="before" src="eni/before-home.jpg" alt="ENI homepage in August: a generic teal hero reading 'Dedicated talent partners enabling all to succeed in Insight and Analytics' above a search form">
-    <span class="pin" style="left:31.5%;top:6.4%">1</span>
-    <span class="pin" style="left:34%;top:49%">2</span>
-    <span class="pin" style="left:44%;top:78%">3</span>
-    <span class="tag b">Before</span><span class="tag a">After</span>
-    <div class="divider"><span class="knob"><svg viewBox="0 0 22 22" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6l-5 5 5 5M14 6l5 5-5 5"/></svg></span></div>
-    <input type="range" min="0" max="100" value="50" aria-label="Compare before and after: slide left to show more of the new homepage">
-  </figure>
-  <ol class="keys">
-    <li><b>1</b>Five plain menu items, where there were nine</li>
-    <li><b>2</b>Says who ENI is, in the first line</li>
-    <li><b>3</b>Two clear routes: find a role, or find a hire</li>
-  </ol>
+  <div class="pair">
+    <figure>
+      <img src="eni/before-home.jpg" alt="ENI homepage in August: a teal hero reading 'Dedicated talent partners enabling all to succeed in Insight and Analytics' above a job search form">
+      <figcaption class="label"><b>Before</b><span>August 2026</span></figcaption>
+    </figure>
+    <figure class="now">
+      <img src="eni/after-home.jpg" alt="ENI homepage in October: 'Worth a closer look', specialist insight recruiters since 1989, with buttons to find a role or find a hire">
+      <figcaption class="label"><b>After</b><span>October 2026</span></figcaption>
+    </figure>
+  </div>
+  <p class="explain">The old homepage opened with a slogan and a search box, under nine menu items of equal weight. The new one says who ENI is in its first line, then offers two routes: find a role, or find a hire. The menu has five items, and ENI&rsquo;s colours and logo stayed.</p>
 
   <section class="changes">
     <div>
@@ -197,32 +174,6 @@
   }), { threshold: .2 });
   document.querySelectorAll('.in').forEach(el => io.observe(el));
 
-  // Compare: the divider follows the range input. On first view it sweeps from
-  // "before" to mostly "after" once, then the pins appear.
-  const cmp = document.getElementById('compare');
-  const range = cmp.querySelector('input');
-  const pins = [...cmp.querySelectorAll('.pin')];
-  const set = v => {
-    cmp.style.setProperty('--x', v + '%'); range.value = v;
-    // A pin marks the new design, so hide it while the old one covers it.
-    pins.forEach(p => p.classList.toggle('covered', parseFloat(p.style.left) < v + 2));
-  };
-  range.addEventListener('input', () => { set(range.value); cmp.classList.add('revealed'); });
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) { set(12); cmp.classList.add('revealed'); }
-  else {
-    set(100);
-    new IntersectionObserver(([e], obs) => {
-      if (!e.isIntersecting) return; obs.disconnect();
-      const t0 = performance.now(), from = 100, to = 12, dur = 1400;
-      const ease = t => 1 - Math.pow(1 - t, 3);
-      (function step(now) {
-        const t = Math.min(1, (now - t0 - 300) / dur);
-        if (t > 0) set(from + (to - from) * ease(t));
-        if (t < 1) requestAnimationFrame(step); else cmp.classList.add('revealed');
-      })(t0);
-    }, { threshold: .5 }).observe(cmp);
-  }
 </script>
 </body>
 </html>

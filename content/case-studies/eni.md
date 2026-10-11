@@ -20,6 +20,7 @@ Elizabeth Norman International (ENI): specialist recruiter for insight, research
 ## What we did
 
 **Website**
+- Built the homepage hero around the logo's leaf: a lens on a field of teal dots that forms a portrait and re-forms through five people. Reduced motion shows one still portrait.
 - Redesigned Home, Find a role, job pages, Hire talent, About, Inclusive hiring, Resources, client stories and articles, keeping ENI's colours and logo.
 - Cut the main menu from nine items to five, with one route each for candidates and employers.
 - Simplified applications to a single form with an optional CV: no account, no password.

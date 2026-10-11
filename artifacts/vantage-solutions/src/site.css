@@ -18,7 +18,7 @@
 html { scroll-behavior: smooth; }
 body { background: var(--paper); color: var(--ink); font: 17px/1.55 var(--display); -webkit-font-smoothing: antialiased; }
 .site a { color: inherit; }
-.lede a, .prose a, .policy a, .size .eg a, .person .links a, .contact .mail { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.lede a, .prose a, .policy a, .size .eg a, .person a, .contact .mail { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
 .site :focus-visible { outline: 2px solid var(--burgundy); outline-offset: 3px; }
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--gutter); }
 

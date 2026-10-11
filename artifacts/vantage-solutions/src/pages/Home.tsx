@@ -18,11 +18,14 @@ const SIZES = [
   { name: 'Large', price: '£20k', time: '3 months or more', body: 'Software that runs a core part of the business, with several kinds of user.' },
 ];
 
-type Person = { name: string; city: string; initial: string; photo?: string; linkedin?: string };
+type Person = { name: string; city: string; initial: string; bio?: React.ReactNode; photo?: string; linkedin?: string };
 
 const PEOPLE: Person[] = [
   { name: 'Killian', city: 'London', initial: 'K' },
-  { name: 'Conor', city: 'Belfast', initial: 'C', photo: 'people/conor.jpg', linkedin: 'https://www.linkedin.com/in/conor-brown-65174597/' },
+  {
+    name: 'Conor', city: 'Belfast', initial: 'C',
+    bio: <>Data scientist with an MSc in AI from Queen’s Belfast. Turns spreadsheets and slow processes into tools a team uses every day, like <a href="https://researchvelocity.co.uk">Velocity</a>, for survey analysis.</>,
+    photo: 'people/conor.jpg', linkedin: 'https://www.linkedin.com/in/conor-brown-65174597/' },
 ];
 
 function SectionHead({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
@@ -113,7 +116,7 @@ export function Home() {
                 <div>
                   <span className="label">{p.city}</span>
                   <h3>{p.name}</h3>
-                  <p><span className="todo">[One line: background, and what {p.name} builds.]</span></p>
+                  <p>{p.bio ?? <span className="todo">[One line: background, and what {p.name} builds.]</span>}</p>
                   <div className="links">
                     <a href={`mailto:${CONTACT_EMAIL}`}>Email</a>
                     {p.linkedin ? <a href={p.linkedin}>LinkedIn</a> : <span className="todo">[LinkedIn]</span>}

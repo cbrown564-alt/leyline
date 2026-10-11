@@ -25,7 +25,7 @@ const PEOPLE: Person[] = [
   { name: 'Killian', city: 'London', initial: 'K' },
   {
     name: 'Conor', city: 'Belfast', initial: 'C',
-    bio: <>Data scientist with an MSc in AI from Queen’s Belfast. Turns spreadsheets and slow processes into tools a team uses every day, like <a href="https://researchvelocity.co.uk">Velocity</a>, for survey analysis.</>,
+    bio: <>Data scientist with an MSc in AI from Queen’s Belfast. Turns spreadsheets and slow processes into tools a team uses every day, like <a href="https://researchvelocity.co.uk">Velocity</a>.</>,
     photo: 'people/conor.jpg', linkedin: 'https://www.linkedin.com/in/conor-brown-65174597/' },
 ];
 

@@ -218,3 +218,11 @@ div.portrait { aspect-ratio: 4 / 5; background: #E9E5DA; height: auto; display: 
   .contact .grid { grid-template-columns: 1fr; gap: 40px; }
   .policy section { grid-template-columns: 1fr; gap: 10px; }
 }
+
+/* ── Glyph reference sheet ── */
+.specimen { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 32px 24px; }
+.specimen figure { margin: 0; }
+.specimen .sizes-row { display: flex; align-items: center; gap: 18px; padding: 20px 0; border-bottom: 1px solid var(--rule); }
+.contact, .specimen .dark { --node: #D86A7A; }
+.specimen .dark { background: var(--ink); color: var(--paper); padding: 10px; display: inline-flex; }
+.specimen figcaption { margin-top: 10px; }

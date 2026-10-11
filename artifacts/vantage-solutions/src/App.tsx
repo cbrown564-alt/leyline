@@ -4,6 +4,7 @@ import { Home } from '@/pages/Home';
 import { CaseStudy } from '@/pages/CaseStudy';
 import { PrivacyPolicy } from '@/pages/Privacy';
 import { NotFound } from '@/pages/NotFound';
+import { Glyphs } from '@/pages/Glyphs';
 
 const routerBase = import.meta.env.BASE_URL.replace(/\/+$/, '');
 
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/" component={Home} />
         <Route path="/work/:slug" component={CaseStudy} />
         <Route path="/privacy" component={PrivacyPolicy} />
+        <Route path="/glyphs" component={Glyphs} />
         {/* Old pages: work moved to case studies; the rest was retired. */}
         <Route path="/our-work"><Redirect to="/#work" replace /></Route>
         <Route path="/peace-of-mind"><Redirect to="/#how" replace /></Route>

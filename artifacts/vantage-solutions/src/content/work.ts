@@ -28,12 +28,12 @@ export const WORK: CaseStudy[] = [
     compare: {
       heading: ['Same company.', 'Clearer first look.'],
       before: {
-        src: 'work/eni/before-home.jpg',
+        src: 'images/work/eni/before-home.jpg',
         alt: "ENI homepage in August: a teal hero reading 'Dedicated talent partners enabling all to succeed in Insight and Analytics' above a job search form",
         date: 'August 2026',
       },
       after: {
-        src: 'work/eni/after-home.jpg',
+        src: 'images/work/eni/after-home.jpg',
         alt: "ENI homepage in October: 'Worth a closer look', specialist insight recruiters since 1989, with buttons to find a role or find a hire",
         date: 'October 2026',
       },

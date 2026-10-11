@@ -1,6 +1,10 @@
 import { useState, type CSSProperties, type FormEvent } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { Glyph } from '@/glyphs/Glyph';
+import { CONTACT_EMAIL } from '@/lib/mailto';
+
+// Static hosting (GitHub Pages) has no API, so the form hands off to the visitor's email app.
+const STATIC_SITE = import.meta.env.VITE_STATIC_SITE === '1';
 
 const CREAM = '#F5F3EC';
 
@@ -39,6 +43,13 @@ export default function ContactForm({ selectedServices = [], onRemoveService, on
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    if (STATIC_SITE) {
+      const subject = `Enquiry from ${name}`;
+      const body = `${message}\r\n\r\n${name}\r\n${email}`;
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      setStatus('sent');
+      return;
+    }
     setStatus('sending');
     setErrorMsg('');
     try {
@@ -72,10 +83,12 @@ export default function ContactForm({ selectedServices = [], onRemoveService, on
     return (
       <div style={{ border: '1px solid rgba(245,243,236,0.25)', padding: 28, marginBottom: 36 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, font: "700 21px/1.2 'Schibsted Grotesk', sans-serif", color: CREAM, marginBottom: 12 }}>
-          <Glyph name="check" size={28} />Message sent
+          <Glyph name="check" size={28} />{STATIC_SITE ? 'Email ready to send' : 'Message sent'}
         </div>
         <p style={{ fontSize: 15, lineHeight: 1.7, color: 'rgba(245,243,236,0.8)', margin: 0, marginBottom: 20 }}>
-          Thank you — we will be in touch.
+          {STATIC_SITE
+            ? <>Your email app should have opened with your message. Press send there. If nothing opened, email {CONTACT_EMAIL}.</>
+            : 'Thank you — we will be in touch.'}
         </p>
         <button
           type="button"

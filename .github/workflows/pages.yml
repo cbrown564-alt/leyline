@@ -1,0 +1,53 @@
+# Build the site and publish it to GitHub Pages on every push to main.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.28.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Build
+        run: pnpm --filter @workspace/vantage-solutions build
+        env:
+          # Pages serves the repo at /leyline/; there is no API there.
+          BASE_PATH: /leyline/
+          VITE_STATIC_SITE: '1'
+          NODE_ENV: production
+      # Pages has no routing, so unknown paths (e.g. /leyline/work/eni) get 404.html.
+      # Make that the app itself so deep links load.
+      - run: cp artifacts/vantage-solutions/dist/public/index.html artifacts/vantage-solutions/dist/public/404.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: artifacts/vantage-solutions/dist/public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

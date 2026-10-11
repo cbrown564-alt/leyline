@@ -26,7 +26,7 @@ const PEOPLE: Person[] = [
   {
     name: 'Conor', city: 'Belfast', initial: 'C',
     bio: <>Data scientist with an MSc in AI from Queen’s Belfast. Turns spreadsheets and slow processes into tools a team uses every day, like <a href="https://researchvelocity.co.uk">Velocity</a>.</>,
-    photo: 'people/conor.jpg', linkedin: 'https://www.linkedin.com/in/conor-brown-65174597/' },
+    photo: 'images/people/conor.jpg', linkedin: 'https://www.linkedin.com/in/conor-brown-65174597/' },
 ];
 
 function SectionHead({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
@@ -45,7 +45,7 @@ export function Home() {
   return (
     <div className="site">
       <div className="top">
-        <div className="fields" aria-hidden="true" style={{ backgroundImage: `url(${asset('hero-bg-fields.jpg')})` }} />
+        <div className="fields" aria-hidden="true" style={{ backgroundImage: `url(${asset('images/hero-bg-fields.jpg')})` }} />
       <div className="wrap">
         <SiteHeader />
 

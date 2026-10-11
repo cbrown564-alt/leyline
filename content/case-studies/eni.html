@@ -6,94 +6,223 @@
 <title>ENI case study — preview</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  /* Content preview only: brand colours and type, no final design decisions. */
-  :root { --paper:#F5F3EC; --ink:#1A1918; --stone:#6B645A; --burgundy:#8B1A2C; --rule:rgba(139,26,44,.2); }
-  * { box-sizing:border-box; margin:0; }
-  body { background:var(--paper); color:var(--ink); font:16px/1.6 Inter, system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
-  main { max-width:1080px; margin:0 auto; padding:56px 24px 96px; }
-  .eyebrow { font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--burgundy); }
-  h1 { font:400 clamp(36px,5vw,60px)/1.08 'Playfair Display', serif; margin-top:12px; max-width:16ch; }
-  .lede { font-size:20px; line-height:1.5; color:var(--stone); margin-top:20px; max-width:46ch; }
-  .facts { display:flex; flex-wrap:wrap; gap:8px 28px; margin-top:28px; font-size:14px; color:var(--stone); }
-  .facts b { color:var(--ink); font-weight:500; }
-  .facts a { color:var(--burgundy); }
+  :root {
+    --paper:#F5F3EC; --ink:#1A1918; --stone:#6B645A; --faint:#A39C90;
+    --burgundy:#8B1A2C; --rule:#DDD7CA;
+    --ease:cubic-bezier(.2,.7,.2,1);
+    --display:'Schibsted Grotesk', system-ui, sans-serif;
+    --mono:'IBM Plex Mono', ui-monospace, monospace;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--paper); color:var(--ink); font:17px/1.55 var(--display); -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1200px; margin:0 auto; padding:0 32px; }
+  a { color:inherit; }
 
-  .compare { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:48px; }
-  figure img { display:block; width:100%; height:auto; border:1px solid var(--rule); }
-  figcaption { font-size:13px; color:var(--stone); margin-top:8px; }
+  /* The Leyline mark: a line between two nodes. It is the one shape the page builds from. */
+  .ley { display:inline-flex; align-items:center; }
+  .ley i { width:5px; height:5px; border-radius:50%; background:var(--burgundy); flex:none; }
+  .ley b { height:1.5px; flex:1; background:var(--burgundy); }
 
-  .cols { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; margin-top:56px; padding-top:32px; border-top:1px solid var(--rule); }
-  h2 { font:400 24px/1.2 'Playfair Display', serif; margin-bottom:14px; }
-  ul { padding-left:18px; }
-  li { margin-bottom:8px; font-size:15px; }
-  li::marker { color:var(--burgundy); }
+  /* ── Masthead ── */
+  .mast { display:flex; justify-content:space-between; align-items:center; padding:28px 0; border-bottom:1px solid var(--rule); }
+  .word { font:500 22px/1 var(--display); letter-spacing:-.02em; }
+  .word .ley { display:flex; width:100%; margin-top:6px; }
+  .label { font:500 12px/1.4 var(--mono); letter-spacing:.04em; text-transform:uppercase; color:var(--stone); }
 
-  .outcome { margin-top:56px; padding-top:32px; border-top:1px solid var(--rule); display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
-  .big { font:400 clamp(26px,3vw,36px)/1.2 'Playfair Display', serif; }
-  .big em { color:var(--burgundy); }
-  blockquote { font:italic 400 22px/1.4 'Playfair Display', serif; }
-  blockquote cite { display:block; font:13px Inter, sans-serif; color:var(--stone); margin-top:10px; font-style:normal; }
+  /* ── Opening ── */
+  .open { padding:88px 0 56px; display:grid; grid-template-columns:1fr; gap:28px; }
+  .client { display:flex; align-items:center; gap:14px; }
+  .client .ley { width:40px; }
+  h1 { font:800 clamp(40px,7vw,100px)/.96 var(--display); letter-spacing:-.045em; }
+  h1 span, h1 em { display:block; }
+  h1 em { font-style:normal; color:var(--burgundy); display:block; }
+  .lede { font-size:21px; line-height:1.45; color:var(--stone); max-width:34ch; }
+  .lede a { color:var(--ink); text-decoration-thickness:1px; text-underline-offset:4px; }
 
-  .check { display:inline-block; font-size:11px; letter-spacing:.06em; text-transform:uppercase; background:#FBE7B5; color:#5C4300; padding:1px 6px; margin-left:6px; vertical-align:middle; }
+  /* ── Figures: the outcomes as numbers, not sentences ── */
+  .figures { display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--ink); }
+  .fig { padding:22px 24px 26px 0; }
+  .fig + .fig { padding-left:24px; border-left:1px solid var(--rule); }
+  .fig .n { font:800 clamp(40px,4.6vw,64px)/1 var(--display); letter-spacing:-.04em; display:flex; align-items:center; gap:10px; }
+  .fig .n small { font-size:.45em; letter-spacing:-.02em; color:var(--faint); font-weight:700; }
+  .fig .n .to { width:34px; }
+  .fig.focus .n { color:var(--burgundy); }
+  .fig p { margin-top:10px; font-size:15px; line-height:1.4; color:var(--stone); max-width:20ch; }
 
-  @media (max-width:760px) {
-    main { padding:32px 16px 64px; }
-    .compare, .cols, .outcome { grid-template-columns:1fr; gap:28px; }
+  /* ── Before / after ── */
+  .compare-head { display:flex; justify-content:space-between; align-items:end; gap:24px; margin:112px 0 20px; }
+  h2 { font:800 clamp(32px,3.6vw,48px)/1.02 var(--display); letter-spacing:-.035em; }
+  h2 em { font-style:normal; color:var(--burgundy); }
+  .hint { color:var(--stone); font-size:15px; }
+
+  .compare { position:relative; aspect-ratio:1440/660; overflow:hidden; border:1px solid var(--rule); background:#fff; touch-action:pan-y; }
+  .compare img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; user-select:none; -webkit-user-drag:none; }
+  .compare .before { clip-path:inset(0 calc(100% - var(--x)) 0 0); }
+  .divider { position:absolute; top:0; bottom:0; left:var(--x); width:0; pointer-events:none; }
+  .divider::before { content:''; position:absolute; top:0; bottom:0; left:-1px; width:2px; background:var(--burgundy); }
+  .knob { position:absolute; top:50%; left:0; transform:translate(-50%,-50%); width:44px; height:44px; border-radius:50%; background:var(--burgundy); box-shadow:0 0 0 6px rgba(245,243,236,.85); display:grid; place-items:center; }
+  .knob svg { width:22px; height:22px; stroke:var(--paper); }
+  .tag { position:absolute; top:16px; font:500 12px/1 var(--mono); letter-spacing:.04em; text-transform:uppercase; padding:7px 9px; background:var(--ink); color:var(--paper); }
+  .tag.b { left:16px; } .tag.a { right:16px; background:var(--burgundy); }
+  .compare input { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:ew-resize; margin:0; }
+  .compare:has(input:focus-visible) .knob { outline:3px solid var(--ink); outline-offset:6px; }
+
+  /* Numbered nodes on the new design: what changed, where. */
+  .pin { position:absolute; transform:translate(-50%,-50%); width:28px; height:28px; border-radius:50%; background:var(--ink); color:var(--paper); font:500 13px/28px var(--mono); text-align:center; box-shadow:0 0 0 4px rgba(255,255,255,.9); opacity:0; transition:opacity .3s var(--ease); pointer-events:none; }
+  .compare.revealed .pin { opacity:1; }
+  .compare.revealed .pin.covered { opacity:0; }
+  .keys { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:18px; }
+  .keys li { list-style:none; display:flex; gap:12px; font-size:15px; line-height:1.4; color:var(--stone); }
+  .keys b { flex:none; width:24px; height:24px; border-radius:50%; background:var(--ink); color:var(--paper); font:500 12px/24px var(--mono); text-align:center; }
+
+  /* ── What changed: each problem paired with its fix ── */
+  .changes { margin-top:112px; display:grid; grid-template-columns:1fr 1fr; gap:64px; }
+  .changes h3 { font:500 12px/1 var(--mono); letter-spacing:.04em; text-transform:uppercase; color:var(--stone); padding-bottom:14px; border-bottom:1px solid var(--ink); }
+  .row { display:grid; grid-template-columns:1fr 56px 1.15fr; align-items:center; gap:12px; padding:22px 0; border-bottom:1px solid var(--rule); }
+  .row .was { color:var(--faint); font-size:16px; line-height:1.35; }
+  .row .now { font:700 21px/1.2 var(--display); letter-spacing:-.02em; }
+  .row .ley { width:100%; }
+  .row .ley i:first-child { background:var(--faint); }
+  .row .ley b { background:linear-gradient(90deg,var(--faint),var(--burgundy)); }
+
+  /* ── Close ── */
+  .close { margin:120px 0 0; padding:40px 0 64px; border-top:1px solid var(--ink); display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap; }
+  .visit { font:800 clamp(28px,3vw,40px)/1 var(--display); letter-spacing:-.035em; text-decoration:none; display:inline-flex; align-items:center; gap:14px; }
+  .visit:hover { color:var(--burgundy); }
+  .visit svg { width:.8em; height:.8em; stroke:currentColor; }
+  .meta { display:flex; gap:28px; }
+  .meta div { font:500 12px/1.5 var(--mono); letter-spacing:.04em; text-transform:uppercase; color:var(--stone); }
+  .meta strong { display:block; color:var(--ink); font-weight:500; }
+
+  /* Entrances: once, on arrival in view. */
+  .in { opacity:0; transform:translateY(14px); transition:opacity .7s var(--ease), transform .7s var(--ease); transition-delay:var(--d,0ms); }
+  .in.shown { opacity:1; transform:none; }
+  .row .ley b { transform-origin:left; transform:scaleX(0); transition:transform .6s var(--ease) calc(var(--d,0ms) + 200ms); }
+  .row.shown .ley b { transform:scaleX(1); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .in, .row .ley b, .pin { transition:none; opacity:1; transform:none; }
+  }
+  @media (max-width:860px) {
+    .wrap { padding:0 16px; }
+    .open { padding:56px 0 40px; }
+    .figures { grid-template-columns:1fr 1fr; }
+    .fig:nth-child(3) { padding-left:0; border-left:0; }
+    .fig:nth-child(n+3) { border-top:1px solid var(--rule); }
+    .compare-head { flex-direction:column; align-items:start; margin-top:72px; }
+    .keys { grid-template-columns:1fr; gap:10px; }
+    .pin { width:20px; height:20px; font-size:11px; line-height:20px; box-shadow:0 0 0 3px rgba(255,255,255,.9); }
+    .knob { width:32px; height:32px; box-shadow:0 0 0 4px rgba(245,243,236,.85); }
+    .tag { top:8px; font-size:10px; padding:5px 6px; } .tag.b { left:8px; } .tag.a { right:8px; }
+    .changes { grid-template-columns:1fr; gap:48px; margin-top:72px; }
+    .row { grid-template-columns:1fr; gap:6px; }
+    .row .ley { width:48px; }
+    .close { margin-top:72px; }
   }
 </style>
 </head>
 <body>
-<main>
-  <div class="eyebrow">Case study</div>
-  <h1>Elizabeth Norman International</h1>
-  <p class="lede">A specialist recruiter's website, rebuilt so candidates and employers find their route in one click, and the team can update it without a developer.</p>
-  <div class="facts">
-    <span><b>Client</b> Insight &amp; analytics recruiter, since 1989</span>
-    <span><b>Size</b> Small · about 4 weeks</span>
-    <span><b>Live</b> October 2026 · <a href="https://elizabethnorman.com">elizabethnorman.com</a></span>
+<div class="wrap">
+
+  <header class="mast">
+    <div class="word">leyline<span class="ley"><i></i><b></b><i></i></span></div>
+    <span class="label">Case study 01</span>
+  </header>
+
+  <section class="open">
+    <div class="client in"><span class="ley"><i></i><b></b><i></i></span><span class="label">Elizabeth Norman International</span></div>
+    <h1 class="in" style="--d:80ms"><span>Easier to find a job.</span> <em>Easier to run.</em></h1>
+    <p class="lede in" style="--d:160ms">A website refresh for a specialist insight recruiter, founded 1989. Live at <a href="https://elizabethnorman.com">elizabethnorman.com</a>.</p>
+  </section>
+
+  <section class="figures" aria-label="Results">
+    <div class="fig in"><div class="n">9<svg class="to" viewBox="0 0 34 8" aria-hidden="true"><circle cx="3" cy="4" r="2.5" fill="#A39C90"/><line x1="3" y1="4" x2="31" y2="4" stroke="#8B1A2C" stroke-width="1.5"/><circle cx="31" cy="4" r="2.5" fill="#8B1A2C"/></svg>5</div><p>menu items, with one route each for candidates and employers</p></div>
+    <div class="fig in" style="--d:80ms"><div class="n">0</div><p>accounts or passwords needed to apply</p></div>
+    <div class="fig in" style="--d:160ms"><div class="n">117</div><p>old links redirected, none broken</p></div>
+    <div class="fig focus in" style="--d:240ms"><div class="n">2<small>min</small></div><p>to change a client logo, without a developer</p></div>
+  </section>
+
+  <div class="compare-head">
+    <h2>Same company. <em>Clearer first look.</em></h2>
+    <p class="hint">Drag to compare August with October.</p>
   </div>
 
-  <div class="compare">
-    <figure><img src="eni/before-home.jpg" alt="ENI homepage before: a generic teal hero with a job search form"><figcaption>Before</figcaption></figure>
-    <figure><img src="eni/after-home.jpg" alt="ENI homepage after: 'Worth a closer look' with routes for candidates and employers"><figcaption>After</figcaption></figure>
-  </div>
+  <figure class="compare" id="compare" style="--x:50%">
+    <img src="eni/after-home.jpg" alt="ENI homepage in October: 'Worth a closer look', specialist insight recruiters since 1989, with buttons for finding a role and finding a hire">
+    <img class="before" src="eni/before-home.jpg" alt="ENI homepage in August: a generic teal hero reading 'Dedicated talent partners enabling all to succeed in Insight and Analytics' above a search form">
+    <span class="pin" style="left:31.5%;top:6.4%">1</span>
+    <span class="pin" style="left:34%;top:49%">2</span>
+    <span class="pin" style="left:44%;top:78%">3</span>
+    <span class="tag b">Before</span><span class="tag a">After</span>
+    <div class="divider"><span class="knob"><svg viewBox="0 0 22 22" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6l-5 5 5 5M14 6l5 5-5 5"/></svg></span></div>
+    <input type="range" min="0" max="100" value="50" aria-label="Compare before and after: slide left to show more of the new homepage">
+  </figure>
+  <ol class="keys">
+    <li><b>1</b>Five plain menu items, where there were nine</li>
+    <li><b>2</b>Says who ENI is, in the first line</li>
+    <li><b>3</b>Two clear routes: find a role, or find a hire</li>
+  </ol>
 
-  <div class="cols">
-    <section>
-      <h2>The problem</h2>
-      <ul>
-        <li>Nine equal menu items and a generic headline</li>
-        <li>An account and password needed to apply for a job</li>
-        <li>Closed jobs and test pages still public</li>
-        <li>WordPress admin too complex for the team to run</li>
-      </ul>
-    </section>
-    <section>
-      <h2>The website</h2>
-      <ul>
-        <li>Menu cut from nine items to five</li>
-        <li>One route each for candidates and employers</li>
-        <li>Apply in one form, CV optional</li>
-        <li>117 redirects: every old link still works</li>
-        <li>Only current jobs in search results</li>
-      </ul>
-    </section>
-    <section>
-      <h2>The editing</h2>
-      <ul>
-        <li>Write and publish articles without WordPress menus</li>
-        <li>Edit main pages through labelled fields</li>
-        <li>Add, reorder or remove client logos on one screen</li>
-      </ul>
-    </section>
-  </div>
+  <section class="changes">
+    <div>
+      <h3>For visitors</h3>
+      <div class="row in"><span class="was">Account and password to apply</span><span class="ley"><i></i><b></b><i></i></span><span class="now">One form, CV optional</span></div>
+      <div class="row in" style="--d:80ms"><span class="was">Closed jobs and test pages in Google</span><span class="ley"><i></i><b></b><i></i></span><span class="now">Only current roles listed</span></div>
+      <div class="row in" style="--d:160ms"><span class="was">Old pages after the rebuild</span><span class="ley"><i></i><b></b><i></i></span><span class="now">Every old link still works</span></div>
+    </div>
+    <div>
+      <h3>For ENI's team</h3>
+      <div class="row in"><span class="was">A developer to change a logo</span><span class="ley"><i></i><b></b><i></i></span><span class="now">Two minutes, on one screen</span></div>
+      <div class="row in" style="--d:80ms"><span class="was">WordPress menus to publish an article</span><span class="ley"><i></i><b></b><i></i></span><span class="now">One writing screen</span></div>
+      <div class="row in" style="--d:160ms"><span class="was">Layout code to edit a page</span><span class="ley"><i></i><b></b><i></i></span><span class="now">Labelled fields</span></div>
+    </div>
+  </section>
 
-  <div class="outcome">
-    <p class="big">A logo change now takes <em>2 minutes</em> instead of a developer.</p>
-    <blockquote>“I've had a sneaky peek and it looks brilliant, thank you.”<cite>Liz, at launch <span class="check">fuller quote?</span></cite></blockquote>
-  </div>
-</main>
+  <footer class="close">
+    <a class="visit" href="https://elizabethnorman.com">Visit the site <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18L18 6M9 6h9v9"/></svg></a>
+    <div class="meta">
+      <div>Size<strong>Small</strong></div>
+      <div>Time<strong>About 4 weeks</strong></div>
+      <div>Live<strong>October 2026</strong></div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Entrances: reveal once when in view.
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('shown'); io.unobserve(e.target); }
+  }), { threshold: .2 });
+  document.querySelectorAll('.in').forEach(el => io.observe(el));
+
+  // Compare: the divider follows the range input. On first view it sweeps from
+  // "before" to mostly "after" once, then the pins appear.
+  const cmp = document.getElementById('compare');
+  const range = cmp.querySelector('input');
+  const pins = [...cmp.querySelectorAll('.pin')];
+  const set = v => {
+    cmp.style.setProperty('--x', v + '%'); range.value = v;
+    // A pin marks the new design, so hide it while the old one covers it.
+    pins.forEach(p => p.classList.toggle('covered', parseFloat(p.style.left) < v + 2));
+  };
+  range.addEventListener('input', () => { set(range.value); cmp.classList.add('revealed'); });
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { set(12); cmp.classList.add('revealed'); }
+  else {
+    set(100);
+    new IntersectionObserver(([e], obs) => {
+      if (!e.isIntersecting) return; obs.disconnect();
+      const t0 = performance.now(), from = 100, to = 12, dur = 1400;
+      const ease = t => 1 - Math.pow(1 - t, 3);
+      (function step(now) {
+        const t = Math.min(1, (now - t0 - 300) / dur);
+        if (t > 0) set(from + (to - from) * ease(t));
+        if (t < 1) requestAnimationFrame(step); else cmp.classList.add('revealed');
+      })(t0);
+    }, { threshold: .5 }).observe(cmp);
+  }
+</script>
 </body>
 </html>

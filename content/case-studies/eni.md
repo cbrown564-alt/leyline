@@ -38,7 +38,7 @@ Elizabeth Norman International (ENI): specialist recruiter for insight, research
 - Old links kept working, with no loss of applications or enquiries during release.
 - Live 3–4 October 2026.
 
-> "I've had a sneaky peek and it looks brilliant, thank you." — Liz, at launch. **[check: replace with a fuller quote if Liz provides one]**
+Quote: none yet. Add one if Liz provides it.
 
 ## Live site
 

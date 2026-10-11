@@ -43,6 +43,8 @@ export function Home() {
 
   return (
     <div className="site">
+      <div className="top">
+        <div className="fields" aria-hidden="true" style={{ backgroundImage: `url(${asset('hero-bg-fields.jpg')})` }} />
       <div className="wrap">
         <SiteHeader />
 
@@ -59,7 +61,10 @@ export function Home() {
             <a className="btn quiet" href="#work">See our work</a>
           </div>
         </section>
+      </div>
+      </div>
 
+      <div className="wrap">
         <section id="work" className="section" aria-labelledby="work-h">
           <SectionHead id="work" title="Work">Real projects, shown before and after.</SectionHead>
           {WORK.map(w => (

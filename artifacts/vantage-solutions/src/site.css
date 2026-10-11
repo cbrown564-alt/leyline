@@ -102,7 +102,14 @@ body { background: var(--paper); color: var(--ink); font: 17px/1.55 var(--displa
 .meta { display: flex; gap: 28px; }
 .meta strong { display: block; color: var(--ink); font-weight: 500; }
 
-/* ── Home: hero ── */
+/* ── Home: hero, over the fields photo ── */
+.top { position: relative; overflow: hidden; }
+.top .wrap { position: relative; }
+.fields { position: absolute; top: 0; bottom: 0; right: 0; width: min(62%, 900px); background-size: cover; background-position: center left; opacity: .6;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 45%), linear-gradient(to bottom, #000 60%, transparent);
+  -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent, #000 45%), linear-gradient(to bottom, #000 60%, transparent); mask-composite: intersect; }
+.top .mast { border-bottom-color: transparent; }
+.top .hero { padding-bottom: 96px; }
 .hero { padding: 96px 0 0; display: grid; gap: 28px; }
 .hero .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
 
@@ -186,6 +193,8 @@ div.portrait { aspect-ratio: 4 / 5; background: #E9E5DA; height: auto; display: 
   .nav { gap: 18px; }
   .nav .wide { display: none; }
   .hero { padding-top: 56px; }
+  .top .hero { padding-bottom: 48px; }
+  .fields { width: 100%; opacity: .28; }
   .section { padding-top: 72px; }
   .section-head { grid-template-columns: 1fr; gap: 12px; margin-bottom: 28px; }
   .pair { grid-template-columns: 1fr; gap: 28px; }

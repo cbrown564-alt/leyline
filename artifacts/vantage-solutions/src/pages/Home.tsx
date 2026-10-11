@@ -18,9 +18,11 @@ const SIZES = [
   { name: 'Large', price: '£20k', time: '3 months or more', body: 'Software that runs a core part of the business, with several kinds of user.' },
 ];
 
-const PEOPLE = [
+type Person = { name: string; city: string; initial: string; photo?: string; linkedin?: string };
+
+const PEOPLE: Person[] = [
   { name: 'Killian', city: 'London', initial: 'K' },
-  { name: 'Conor', city: 'Belfast', initial: 'C' },
+  { name: 'Conor', city: 'Belfast', initial: 'C', photo: 'people/conor.jpg', linkedin: 'https://www.linkedin.com/in/conor-brown-65174597/' },
 ];
 
 function SectionHead({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
@@ -105,12 +107,17 @@ export function Home() {
           <div className="people">
             {PEOPLE.map(p => (
               <div key={p.name} className="person in">
-                <div className="portrait" aria-label={`Photo of ${p.name} to come`}>{p.initial}</div>
+                {p.photo
+                  ? <img className="portrait" src={asset(p.photo)} alt={p.name} width={720} height={900} />
+                  : <div className="portrait" aria-label={`Photo of ${p.name} to come`}>{p.initial}</div>}
                 <div>
                   <span className="label">{p.city}</span>
                   <h3>{p.name}</h3>
                   <p><span className="todo">[One line: background, and what {p.name} builds.]</span></p>
-                  <div className="links"><a href={`mailto:${CONTACT_EMAIL}`}>Email</a><span className="todo">[LinkedIn]</span></div>
+                  <div className="links">
+                    <a href={`mailto:${CONTACT_EMAIL}`}>Email</a>
+                    {p.linkedin ? <a href={p.linkedin}>LinkedIn</a> : <span className="todo">[LinkedIn]</span>}
+                  </div>
                 </div>
               </div>
             ))}

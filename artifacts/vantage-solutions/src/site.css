@@ -147,7 +147,8 @@ body { background: var(--paper); color: var(--ink); font: 17px/1.55 var(--displa
 /* ── Home: people ── */
 .people { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
 .person { display: grid; grid-template-columns: 180px 1fr; gap: 28px; align-items: start; }
-.portrait { aspect-ratio: 4 / 5; background: #E9E5DA; display: grid; place-items: center; font: 800 44px/1 var(--display); letter-spacing: -.04em; color: var(--faint); }
+.portrait { display: block; width: 100%; height: auto; object-fit: cover; }
+div.portrait { aspect-ratio: 4 / 5; background: #E9E5DA; height: auto; display: grid; place-items: center; font: 800 44px/1 var(--display); letter-spacing: -.04em; color: var(--faint); }
 .person h3 { font: 800 30px/1 var(--display); letter-spacing: -.035em; margin: 10px 0 0; }
 .person p { color: var(--stone); margin: 12px 0 0; font-size: 16px; line-height: 1.45; }
 .person .links { display: flex; gap: 18px; margin-top: 16px; font-size: 15px; }

@@ -1,8 +1,8 @@
 import { useState, type CSSProperties, type FormEvent } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { Glyph } from '@/glyphs/Glyph';
 
 const CREAM = '#F5F3EC';
-const BURGUNDY = '#8B1A2C';
 
 const labelStyle: CSSProperties = {
   display: 'block',
@@ -71,8 +71,8 @@ export default function ContactForm({ selectedServices = [], onRemoveService, on
   if (status === 'sent') {
     return (
       <div style={{ border: '1px solid rgba(245,243,236,0.25)', padding: 28, marginBottom: 36 }}>
-        <div style={{ fontSize: 10, letterSpacing: '0.25em', textTransform: 'uppercase', color: BURGUNDY, marginBottom: 12 }}>
-          Message sent
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, font: "700 21px/1.2 'Schibsted Grotesk', sans-serif", color: CREAM, marginBottom: 12 }}>
+          <Glyph name="check" size={28} />Message sent
         </div>
         <p style={{ fontSize: 15, lineHeight: 1.7, color: 'rgba(245,243,236,0.8)', margin: 0, marginBottom: 20 }}>
           Thank you — we will be in touch.

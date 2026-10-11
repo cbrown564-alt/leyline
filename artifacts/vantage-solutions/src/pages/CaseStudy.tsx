@@ -2,12 +2,7 @@ import { Link, useParams } from 'wouter';
 import { SiteHeader, SiteFooter, Ley, useReveal, usePageTitle, asset } from '@/components/Site';
 import { findWork, WORK } from '@/content/work';
 import { NotFound } from '@/pages/NotFound';
-
-const Arrow = () => (
-  <svg viewBox="0 0 24 24" fill="none" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M6 18L18 6M9 6h9v9" />
-  </svg>
-);
+import { Glyph } from '@/glyphs/Glyph';
 
 export function CaseStudy() {
   const { slug = '' } = useParams<{ slug: string }>();
@@ -76,7 +71,7 @@ export function CaseStudy() {
       </section>
 
       <div className="close">
-        <a className="visit" href={w.site.url}>Visit the site <Arrow /></a>
+        <a className="visit" href={w.site.url}>Visit the site <Glyph name="external" size={36} /></a>
         <div className="meta label">
           <div>Size<strong>{w.meta.size}</strong></div>
           <div>Time<strong>{w.meta.time}</strong></div>

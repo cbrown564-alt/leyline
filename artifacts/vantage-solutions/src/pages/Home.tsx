@@ -1,21 +1,22 @@
 import { Link } from 'wouter';
 import { SiteHeader, SiteFooter, Ley, useReveal, usePageTitle, asset } from '@/components/Site';
 import ContactForm from '@/components/ContactForm';
+import { Glyph, type GlyphName } from '@/glyphs/Glyph';
 import { WORK } from '@/content/work';
 import { CONTACT_EMAIL } from '@/lib/mailto';
 
-const STEPS = [
-  { name: 'Talk', note: 'We learn how your business works now.' },
-  { name: 'Design', note: 'Scope and price agreed in writing.' },
-  { name: 'Prototype', note: 'You try it before we build it.', focus: true },
-  { name: 'Build', note: 'Live, with your team shown how to use it.' },
-  { name: 'Look after', note: 'Hosting, fixes and changes.' },
+const STEPS: { name: string; glyph: GlyphName; note: string; focus?: boolean }[] = [
+  { name: 'Talk', glyph: 'talk', note: 'We learn how your business works now.' },
+  { name: 'Design', glyph: 'design', note: 'Scope and price agreed in writing.' },
+  { name: 'Prototype', glyph: 'prototype', note: 'You try it before we build it.', focus: true },
+  { name: 'Build', glyph: 'build', note: 'Live, with your team shown how to use it.' },
+  { name: 'Look after', glyph: 'lookAfter', note: 'Hosting, fixes and changes.' },
 ];
 
-const SIZES = [
-  { name: 'Small', price: '£2k', time: '2–4 weeks', body: 'A website refresh, or one tool your team uses every day.', example: 'eni' },
-  { name: 'Medium', price: '£5k', time: '1–2 months', body: 'A system that replaces a spreadsheet or a paper process: bookings, stock, quotes.' },
-  { name: 'Large', price: '£20k', time: '3 months or more', body: 'Software that runs a core part of the business, with several kinds of user.' },
+const SIZES: { name: string; glyph: GlyphName; price: string; time: string; body: string; example?: string }[] = [
+  { name: 'Small', glyph: 'small', price: '£2k', time: '2–4 weeks', body: 'A website refresh, or one tool your team uses every day.', example: 'eni' },
+  { name: 'Medium', glyph: 'medium', price: '£5k', time: '1–2 months', body: 'A system that replaces a spreadsheet or a paper process: bookings, stock, quotes.' },
+  { name: 'Large', glyph: 'large', price: '£20k', time: '3 months or more', body: 'Software that runs a core part of the business, with several kinds of user.' },
 ];
 
 type Person = { name: string; city: string; initial: string; bio?: React.ReactNode; photo?: string; linkedin?: string };
@@ -57,7 +58,7 @@ export function Home() {
             We are two developers who build the websites, tools and systems a business runs on.
           </p>
           <div className="actions in" style={{ ['--d' as string]: '240ms' }}>
-            <a className="btn" href="#contact">Start a conversation</a>
+            <a className="btn" href="#contact">Start a conversation <Glyph name="arrow" size={22} /></a>
             <a className="btn quiet" href="#work">See our work</a>
           </div>
         </section>
@@ -76,7 +77,7 @@ export function Home() {
                 <div className="facts">
                   {w.card.map(f => <div key={f.value}><strong>{f.value}</strong>{f.label}</div>)}
                 </div>
-                <span className="go">Read the case study <Ley /></span>
+                <span className="go">Read the case study <Glyph name="arrow" size={24} /></span>
               </div>
             </Link>
           ))}
@@ -87,7 +88,7 @@ export function Home() {
           <ol className="strip">
             {STEPS.map((s, n) => (
               <li key={s.name} className={`in${s.focus ? ' focus' : ''}`} style={{ ['--d' as string]: `${n * 90}ms` }}>
-                <span className="node" aria-hidden="true" />
+                <span className="step-glyph"><Glyph name={s.glyph} size={32} /></span>
                 <h3>{s.name}</h3>
                 <p>{s.note}</p>
               </li>
@@ -100,6 +101,7 @@ export function Home() {
           <div className="sizes">
             {SIZES.map((s, n) => (
               <div key={s.name} className="size in" style={{ ['--d' as string]: `${n * 90}ms` }}>
+                <Glyph name={s.glyph} size={44} />
                 <span className="label">{s.name}</span>
                 <div className="price"><small>From</small>{s.price}</div>
                 <div className="time">{s.time}</div>

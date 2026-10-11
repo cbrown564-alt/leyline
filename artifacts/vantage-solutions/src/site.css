@@ -61,8 +61,9 @@ body { background: var(--paper); color: var(--ink); font: 17px/1.55 var(--displa
 .btn:hover { background: var(--burgundy); border-color: var(--burgundy); }
 .btn.quiet { background: transparent; color: var(--ink) !important; }
 .btn.quiet:hover { background: transparent; border-color: var(--burgundy); color: var(--burgundy) !important; }
-.btn .ley { width: 22px; }
-.btn .ley i, .btn .ley b { background: currentColor; }
+.btn { --node: currentColor; }
+.btn .glyph { transition: transform .25s var(--ease); }
+.btn:hover .glyph { transform: translateX(3px); }
 
 /* ── Before / after pair ── */
 .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
@@ -98,7 +99,7 @@ body { background: var(--paper); color: var(--ink); font: 17px/1.55 var(--displa
 .close { margin-top: 120px; padding: 40px 0 64px; border-top: 1px solid var(--ink); display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
 .visit { font: 800 clamp(28px, 3vw, 40px)/1 var(--display); letter-spacing: -.035em; text-decoration: none; display: inline-flex; align-items: center; gap: 14px; }
 .visit:hover { color: var(--burgundy); }
-.visit svg { width: .8em; height: .8em; stroke: currentColor; }
+.visit .glyph { width: .9em; height: .9em; }
 .meta { display: flex; gap: 28px; }
 .meta strong { display: block; color: var(--ink); font-weight: 500; }
 
@@ -125,16 +126,16 @@ body { background: var(--paper); color: var(--ink); font: 17px/1.55 var(--displa
 .card .facts strong { font: 800 26px/1 var(--display); letter-spacing: -.03em; color: var(--ink); min-width: 92px; }
 .card .facts div:first-child strong { color: var(--burgundy); }
 .card .go { font-weight: 700; display: inline-flex; align-items: center; gap: 12px; }
-.card .go .ley { width: 28px; transition: width .3s var(--ease); }
+.card .go .glyph { transition: transform .3s var(--ease); }
 .card:hover .go { color: var(--burgundy); }
-.card:hover .go .ley { width: 44px; }
+.card:hover .go .glyph { transform: translateX(6px); }
 
 /* ── Home: process strip ── */
 .strip { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); position: relative; }
-.strip::before { content: ''; position: absolute; left: 7px; right: calc(20% - 7px); top: 7px; height: 1.5px; background: var(--rule); }
+.strip::before { content: ''; position: absolute; left: 16px; right: calc(20% - 16px); top: 16px; height: 1.5px; background: var(--rule); }
 .strip li { position: relative; padding-right: 20px; }
-.strip .node { display: block; width: 15px; height: 15px; border-radius: 50%; background: var(--paper); border: 1.5px solid var(--ink); position: relative; }
-.strip .focus .node { background: var(--burgundy); border-color: var(--burgundy); box-shadow: 0 0 0 5px rgba(139, 26, 44, .14); }
+.strip .step-glyph { display: inline-flex; position: relative; background: var(--paper); box-shadow: 0 0 0 6px var(--paper); }
+.strip .focus .step-glyph { color: var(--burgundy); }
 .strip h3 { font: 800 24px/1.1 var(--display); letter-spacing: -.03em; margin: 22px 0 8px; }
 .strip .focus h3 { color: var(--burgundy); }
 .strip p { margin: 0; color: var(--stone); font-size: 15px; line-height: 1.4; max-width: 20ch; }
@@ -143,6 +144,7 @@ body { background: var(--paper); color: var(--ink); font: 17px/1.55 var(--displa
 .sizes { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--rule); }
 .size { padding: 4px 28px 32px 0; display: flex; flex-direction: column; }
 .size + .size { padding-left: 28px; border-left: 1px solid var(--rule); }
+.size .glyph { margin: 8px 0 16px; }
 .size .price { font: 800 clamp(48px, 5.6vw, 76px)/1 var(--display); letter-spacing: -.05em; margin: 14px 0 6px; }
 .size .price small { font: 500 13px/1 var(--mono); letter-spacing: .04em; text-transform: uppercase; color: var(--stone); margin-right: 8px; vertical-align: .9em; }
 .size .time { font: 700 18px/1.3 var(--display); }
@@ -205,8 +207,9 @@ div.portrait { aspect-ratio: 4 / 5; background: #E9E5DA; height: auto; display: 
   .close { margin-top: 72px; }
   .card { grid-template-columns: 1fr; gap: 24px; }
   .strip { grid-template-columns: 1fr; gap: 0; }
-  .strip::before { left: 7px; right: auto; top: 7px; bottom: 40px; width: 1.5px; height: auto; }
-  .strip li { display: grid; grid-template-columns: 15px 1fr; column-gap: 20px; padding: 0 0 28px; }
+  .strip::before { left: 16px; right: auto; top: 16px; bottom: 48px; width: 1.5px; height: auto; }
+  .strip li { display: grid; grid-template-columns: 32px 1fr; column-gap: 20px; padding: 0 0 28px; }
+  .strip .step-glyph { grid-row: span 2; align-self: start; }
   .strip h3 { margin: 0 0 4px; font-size: 21px; }
   .strip p { grid-column: 2; max-width: none; }
   .sizes { grid-template-columns: 1fr; }

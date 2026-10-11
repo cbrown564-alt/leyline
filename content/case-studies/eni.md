@@ -1,6 +1,6 @@
 # Case study: Elizabeth Norman International
 
-> Draft for the Leyline site. Facts are drawn from the project repo (`~/code/liz`); anything marked **[check]** needs confirming before publication, including ENI's permission to be named.
+> Draft for the Leyline site. Facts are drawn from the project repo (`~/code/liz`). Liz has given permission to use ENI's name. Anything marked **[check]** still needs confirming.
 
 ## One line
 
@@ -30,15 +30,15 @@ Elizabeth Norman International (ENI): specialist recruiter for insight, research
 
 **Editing**
 - **Client logos.** A single screen to add, name, reorder or remove a logo; it updates Home and Hire talent together. Live.
-- **Page text.** Key page copy (headings, mission, introductions) is edited through labelled fields instead of raw layout code. Live **[check exact extent]**.
-- **Articles and pages workspace.** A simplified screen for writing an article, updating a page and reviewing the job board. Built and tested; rollout awaits ENI's decision (mid-November). **[check before claiming]**
+- **Articles and pages.** A simplified workspace for writing an article and updating the main pages through labelled fields, without navigating WordPress menus. Live.
 
 ## Outcome
 
-- Live 3–4 October 2026, about seven weeks from first audit (12 August). Follow-up changes went live on 6–7 October.
+- A logo change now takes 2 minutes instead of a developer.
 - Old links kept working, with no loss of applications or enquiries during release.
-- "Liz is very happy with it." **[check: get a direct quote from Liz, with permission]**
-- **[check: any measurable result since launch, e.g. applications per week or time to publish an article]**
+- Live 3–4 October 2026.
+
+> "I've had a sneaky peek and it looks brilliant, thank you." — Liz, at launch. **[check: replace with a fuller quote if Liz provides one]**
 
 ## Screenshots
 
@@ -49,8 +49,8 @@ Before/after pairs already exist in `~/code/liz/exports/comparison-captures/`:
 | Hero | `01-home-live-fold.png` | `01-home-refresh-fold.png` |
 | Job page | `04-role-live-fold.png` | `04-role-refresh-fold.png` |
 | Employers | `05-employers-live-fold.png` | `05-employers-refresh-fold.png` |
-| Logo editor | — | `audit/post-launch-2026-10-03/production-logo-editor.jpg` (crop: it shows a staff name and unrelated plugin warnings) |
+| Logo editor | — | `eni/logo-editor.png` (cropped; staff name and plugin warnings removed) |
 
 ## Scale (for the "project sizes" block)
 
-Medium: website redesign plus an editing tool, roughly 7 weeks, on the client's existing WordPress. **[check: price band]**
+Small: a website refresh plus a simplified editor on the client's existing WordPress. About 4 weeks of active work. The calendar span was 7 weeks, including a 4-week pause waiting on the client. **[check: price band]**

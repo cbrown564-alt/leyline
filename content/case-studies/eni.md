@@ -23,6 +23,7 @@ Elizabeth Norman International (ENI): specialist recruiter for insight, research
 - Redesigned Home, Find a role, job pages, Hire talent, About, Inclusive hiring, Resources, client stories and articles, keeping ENI's colours and logo.
 - Cut the main menu from nine items to five, with one route each for candidates and employers.
 - Simplified applications to a single form with an optional CV: no account, no password.
+- Cut the public site from 145 pages and articles to 41, retiring old, duplicate and test pages (sitemap count, 10 September 2026 vs 11 October 2026).
 - Added 117 redirects, so every old link still lands somewhere useful.
 - Stopped search engines listing closed jobs; the sitemap now holds current roles only.
 - Removed an analytics tracker nobody was using.

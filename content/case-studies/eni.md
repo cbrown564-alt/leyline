@@ -40,16 +40,15 @@ Elizabeth Norman International (ENI): specialist recruiter for insight, research
 
 > "I've had a sneaky peek and it looks brilliant, thank you." — Liz, at launch. **[check: replace with a fuller quote if Liz provides one]**
 
-## Screenshots
+## Live site
 
-Before/after pairs already exist in `~/code/liz/exports/comparison-captures/`:
+[elizabethnorman.com](https://elizabethnorman.com)
 
-| Use | Before | After |
-|---|---|---|
-| Hero | `01-home-live-fold.png` | `01-home-refresh-fold.png` |
-| Job page | `04-role-live-fold.png` | `04-role-refresh-fold.png` |
-| Employers | `05-employers-live-fold.png` | `05-employers-refresh-fold.png` |
-| Logo editor | — | `eni/logo-editor.png` (cropped; staff name and plugin warnings removed) |
+| Before | After |
+|---|---|
+| `eni/before-home.jpg` (August 2026) | `eni/after-home.jpg` (live, October 2026) |
+
+More before/after pairs (job page, employers, about) are in `~/code/liz/exports/comparison-captures/` if the case study needs them.
 
 ## Scale (for the "project sizes" block)
 

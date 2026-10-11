@@ -24,6 +24,7 @@ let id = 0; const pending = new Map();
 ws.addEventListener('message', e => { const m = JSON.parse(e.data); if (m.id && pending.has(m.id)) { pending.get(m.id)(m.result); pending.delete(m.id); } });
 const send = (method, params = {}) => new Promise(r => { const i = ++id; pending.set(i, r); ws.send(JSON.stringify({ id: i, method, params })); });
 await send('Page.enable');
+if (process.env.REDUCED) await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
 await send('Emulation.setDeviceMetricsOverride', { width: W, height: H, deviceScaleFactor: 1, mobile });
 for (const s of shots) {
   const [name, route] = s.split(':');
@@ -31,7 +32,7 @@ for (const s of shots) {
   await sleep(1800);
   // Scroll through so scroll-triggered reveals fire, then return to top.
   await send('Runtime.evaluate', { expression: `(async()=>{for(let y=0;y<document.documentElement.scrollHeight;y+=400){scrollTo(0,y);await new Promise(r=>setTimeout(r,60))}scrollTo(0,0)})()`, awaitPromise: true });
-  await sleep(1500);
+  await sleep(Number(process.env.WAIT ?? 1500));
   const { result } = await send('Runtime.evaluate', { expression: 'document.documentElement.scrollHeight', returnByValue: true });
   const shot = await send('Page.captureScreenshot', { format: 'jpeg', quality: 80, captureBeyondViewport: true, clip: { x: 0, y: 0, width: W, height: result.value, scale: 1 } });
   await writeFile(path.join(outDir, `${name}.jpg`), Buffer.from(shot.data, 'base64'));

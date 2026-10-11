@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ENI case study — preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* Content preview only: brand colours and type, no final design decisions. */
+  :root { --paper:#F5F3EC; --ink:#1A1918; --stone:#6B645A; --burgundy:#8B1A2C; --rule:rgba(139,26,44,.2); }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--paper); color:var(--ink); font:16px/1.6 Inter, system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  main { max-width:1080px; margin:0 auto; padding:56px 24px 96px; }
+  .eyebrow { font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--burgundy); }
+  h1 { font:400 clamp(36px,5vw,60px)/1.08 'Playfair Display', serif; margin-top:12px; max-width:16ch; }
+  .lede { font-size:20px; line-height:1.5; color:var(--stone); margin-top:20px; max-width:46ch; }
+  .facts { display:flex; flex-wrap:wrap; gap:8px 28px; margin-top:28px; font-size:14px; color:var(--stone); }
+  .facts b { color:var(--ink); font-weight:500; }
+  .facts a { color:var(--burgundy); }
+
+  .compare { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:48px; }
+  figure img { display:block; width:100%; height:auto; border:1px solid var(--rule); }
+  figcaption { font-size:13px; color:var(--stone); margin-top:8px; }
+
+  .cols { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; margin-top:56px; padding-top:32px; border-top:1px solid var(--rule); }
+  h2 { font:400 24px/1.2 'Playfair Display', serif; margin-bottom:14px; }
+  ul { padding-left:18px; }
+  li { margin-bottom:8px; font-size:15px; }
+  li::marker { color:var(--burgundy); }
+
+  .outcome { margin-top:56px; padding-top:32px; border-top:1px solid var(--rule); display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+  .big { font:400 clamp(26px,3vw,36px)/1.2 'Playfair Display', serif; }
+  .big em { color:var(--burgundy); }
+  blockquote { font:italic 400 22px/1.4 'Playfair Display', serif; }
+  blockquote cite { display:block; font:13px Inter, sans-serif; color:var(--stone); margin-top:10px; font-style:normal; }
+
+  .check { display:inline-block; font-size:11px; letter-spacing:.06em; text-transform:uppercase; background:#FBE7B5; color:#5C4300; padding:1px 6px; margin-left:6px; vertical-align:middle; }
+
+  @media (max-width:760px) {
+    main { padding:32px 16px 64px; }
+    .compare, .cols, .outcome { grid-template-columns:1fr; gap:28px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">Case study</div>
+  <h1>Elizabeth Norman International</h1>
+  <p class="lede">A specialist recruiter's website, rebuilt so candidates and employers find their route in one click, and the team can update it without a developer.</p>
+  <div class="facts">
+    <span><b>Client</b> Insight &amp; analytics recruiter, since 1989</span>
+    <span><b>Size</b> Small · about 4 weeks</span>
+    <span><b>Live</b> October 2026 · <a href="https://elizabethnorman.com">elizabethnorman.com</a></span>
+  </div>
+
+  <div class="compare">
+    <figure><img src="eni/before-home.jpg" alt="ENI homepage before: a generic teal hero with a job search form"><figcaption>Before</figcaption></figure>
+    <figure><img src="eni/after-home.jpg" alt="ENI homepage after: 'Worth a closer look' with routes for candidates and employers"><figcaption>After</figcaption></figure>
+  </div>
+
+  <div class="cols">
+    <section>
+      <h2>The problem</h2>
+      <ul>
+        <li>Nine equal menu items and a generic headline</li>
+        <li>An account and password needed to apply for a job</li>
+        <li>Closed jobs and test pages still public</li>
+        <li>WordPress admin too complex for the team to run</li>
+      </ul>
+    </section>
+    <section>
+      <h2>The website</h2>
+      <ul>
+        <li>Menu cut from nine items to five</li>
+        <li>One route each for candidates and employers</li>
+        <li>Apply in one form, CV optional</li>
+        <li>117 redirects: every old link still works</li>
+        <li>Only current jobs in search results</li>
+      </ul>
+    </section>
+    <section>
+      <h2>The editing</h2>
+      <ul>
+        <li>Write and publish articles without WordPress menus</li>
+        <li>Edit main pages through labelled fields</li>
+        <li>Add, reorder or remove client logos on one screen</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="outcome">
+    <p class="big">A logo change now takes <em>2 minutes</em> instead of a developer.</p>
+    <blockquote>“I've had a sneaky peek and it looks brilliant, thank you.”<cite>Liz, at launch <span class="check">fuller quote?</span></cite></blockquote>
+  </div>
+</main>
+</body>
+</html>

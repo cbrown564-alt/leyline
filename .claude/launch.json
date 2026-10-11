@@ -4,8 +4,24 @@
     {
       "name": "leyline",
       "runtimeExecutable": "pnpm",
-      "runtimeArgs": ["--filter", "@workspace/vantage-solutions", "dev"],
+      "runtimeArgs": [
+        "--filter",
+        "@workspace/vantage-solutions",
+        "dev"
+      ],
       "port": 5173
+    },
+    {
+      "name": "content",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8765",
+        "--directory",
+        "content"
+      ],
+      "port": 8765
     }
   ]
 }
